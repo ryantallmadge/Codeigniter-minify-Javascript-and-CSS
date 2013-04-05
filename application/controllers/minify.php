@@ -68,6 +68,8 @@ class Minify extends CI_Controller {
 	 */
 	public function js()
 	{
+		//Cached the output if we are in production
+		if(ENVIRONMENT == 'production')$this->output->cache(60);
         //Get the files to be minified
 		$scripts = explode("|",urldecode($this->uri->segment(3)));
 		//Loop through the files getting thier content
@@ -92,6 +94,8 @@ class Minify extends CI_Controller {
 	 */
 	public function css()
 	{
+		//Cached the output if we are in production
+		if(ENVIRONMENT == 'production')$this->output->cache(60);
         //Get the css to be minified
 		$scripts = explode("|",urldecode($this->uri->segment(3)));
         //Loop through the files and get thier content
